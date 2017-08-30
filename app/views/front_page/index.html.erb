@@ -1,0 +1,12 @@
+<h1 class="opening">Welcome to Frendli!</h1>
+<p class="intro">Hello Everybody!</p>
+
+<div class="start">
+  <% if logged_in %>
+<%= link_to('Users', users_path) %>
+<% else %>
+<%= link_to('Sign In', login_path) %>
+<% end %>
+
+<%= link_to('New User', new_user_path) %>
+</div>

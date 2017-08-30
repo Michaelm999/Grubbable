@@ -1,0 +1,7 @@
+<h1>Edit</h1>
+<%= form_for @user, url:edit_user_path do |u| %>
+<%= u.text_field :name, placeholder: 'Name' %>
+<%= u.text_area :bio, placeholder: 'Bio' %>
+
+<%= u.submit class: 'btn btn-success' %>
+<% end %>

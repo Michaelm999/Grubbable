@@ -1,0 +1,10 @@
+<h1>Users</h1>
+<p>Hello: <%= current_user.name %></p>
+<ul id="list">
+  <% @users.each do |u| %>
+<li style= "padding: 10px;"> <%= link_to(u.name, "/users/#{u.id}") %>
+</li>
+  <% end %>
+</ul>
+<%= link_to 'Home', root_path, {class: 'navbar-brand'} %>
+<%= link_to('Logout', logout_path, method: 'delete') %>
