@@ -7,8 +7,7 @@
   <% @user.comments.each do |c| %>
   <li>
   <%= c.content %> <br>
-  -<%= c.user.name %>
-  <%= link_to('Delete', @comment, method: :delete, data: {confirm: 'Are you certain?'}) %>
+  -<%= c.username %>
   </li>
   <% end %>
 </ul>
@@ -19,12 +18,16 @@
 <% end %>
 
 <div class="tools">
-<% if current_user.name = @user.name %>
+<% if current_user.id = @user.id %>
 <%= link_to('Edit Your Page', edit_user_path) %> <br>
 <%= link_to('Delete Your Account', @user, method: :delete, data: {confirm: 'Are you certain?'}) %><br>
 <%= link_to('Logout', logout_path, method: 'delete') %> <br>
 <% end %>
 <%= link_to('See the Others', users_path) %>
 
-
+<% if current_user.active_relationships.include? @user %>
+<%= link_to('unfollow', unfollow_path) %>
+<% else %>
+<%= link_to('Follow', follow_path(@user)) %>
+<% end %>
 </div>

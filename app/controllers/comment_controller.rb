@@ -7,7 +7,7 @@ class CommentController < ApplicationController
     def create
       @user = User.find(params[:id])
       @comment = @user.comments.create(comment_params)
-      @comment.user = current_user
+      @comment.username = current_user.name
       @comment.save
       redirect_to user_path @user
     end

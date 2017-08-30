@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'relationship/create'
+
+  get 'relationship/destroy'
+
   get 'users_user/create'
 
   get 'users_user/destroy'
@@ -22,10 +26,8 @@ Rails.application.routes.draw do
   delete 'users/:id' => 'users#destroy'
   delete 'users/:id/comments/:id' => 'comment#destroy'
 
-  get 'user/follow'=>'users_user#create', as: :follow
-
-  get 'user/unfollow'=>'users_user#destroy', as: :unfollow
-
+  get '/relationship/:id' => 'relationships#create', as: :follow
+  get 'relationship/:id' => 'relationships#destroy', as: :unfollow
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
