@@ -17,6 +17,13 @@
   <%= a.submit %>
 <% end %>
 
+<h3 class="h3">Following:</h3>
+<ul class="favs">
+  <% @user.following.each do |f| %>
+  <li> <%= link_to(f.name, user_path(f.id)) %> </li>
+  <% end %>
+</ul>
+
 <div class="tools">
 <% if current_user.id = @user.id %>
 <%= link_to('Edit Your Page', edit_user_path) %> <br>
@@ -25,9 +32,9 @@
 <% end %>
 <%= link_to('See the Others', users_path) %>
 
-<% if current_user.active_relationships.include? @user %>
-<%= link_to('unfollow', unfollow_path) %>
-<% else %>
-<%= link_to('Follow', follow_path(@user)) %>
-<% end %>
+<% if current_user_is_following(current_user.id, @user.id) %>
+    <%= link_to('Following', unfollow_path) %>
+ <% else %>
+    <%= link_to('Follow', follow_path) %>
+  <% end %>
 </div>
