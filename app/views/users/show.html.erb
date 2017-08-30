@@ -25,13 +25,12 @@
 </ul>
 
 <div class="tools">
-<% if current_user.id = @user.id %>
+<% if @user.id = current_user.id %>
 <%= link_to('Edit Your Page', edit_user_path) %> <br>
 <%= link_to('Delete Your Account', @user, method: :delete, data: {confirm: 'Are you certain?'}) %><br>
 <%= link_to('Logout', logout_path, method: 'delete') %> <br>
 <% end %>
 <%= link_to('See the Others', users_path) %>
-
 <% if current_user_is_following(current_user.id, @user.id) %>
     <%= link_to('Following', unfollow_path) %>
  <% else %>
