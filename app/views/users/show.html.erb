@@ -2,6 +2,15 @@
 <h3 class="h3">Bio</h3>
 <p id="bio"><%= @user.bio %></p>
 
+<div id=following>
+<h3 class="h3">Following:</h3>
+<ul class="favs">
+  <% @user.following.each do |f| %>
+  <li> <%= link_to(f.name, user_path(f.id)) %> </li>
+  <% end %>
+</ul>
+</div>
+
 <h3>Comments:</h3>
 <ul class="comments">
   <% @user.comments.each do |c| %>
@@ -13,16 +22,9 @@
 </ul>
 
 <%= form_for [@user, Comment.new] do |a| %>
-  <%= a.text_area :content, placeholder: 'Comments' %>
-  <%= a.submit %>
+  <div id='comments'><%= a.text_area :content, placeholder: 'Comments' %></div>
+  <%= a.submit class: 'btn btn-primary' %>
 <% end %>
-
-<h3 class="h3">Following:</h3>
-<ul class="favs">
-  <% @user.following.each do |f| %>
-  <li> <%= link_to(f.name, user_path(f.id)) %> </li>
-  <% end %>
-</ul>
 
 <div class="tools">
 <% if @user.id === current_user.id %>
@@ -30,7 +32,6 @@
 <%= link_to('Delete Your Account', @user, method: :delete, data: {confirm: 'Are you certain?'}) %><br>
 <%= link_to('Logout', logout_path, method: 'delete') %> <br>
 <% end %>
-<%= link_to('See the Others', users_path) %>
 <% if current_user_is_following(current_user.id, @user.id) %>
     <%= link_to('Following', unfollow_path) %>
  <% else %>
