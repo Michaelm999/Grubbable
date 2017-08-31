@@ -13,7 +13,7 @@ class RelationshipController < ApplicationController
     @user = User.find(params[:id])
     if current_user.unfollow @user.id
       respond_to do |format|
-        format.html { redirect_to user_path(current_user) }
+        format.html { redirect_to user_path(@user) }
          format.js
     end
     end
